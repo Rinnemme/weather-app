@@ -16,11 +16,19 @@ const dailyData = [
     {name: 'totalprecip_in', label: 'Precipitation', unit: ' in'}
 ]
 
+const currentData = [
+    {name: 'temp_f', label: 'Temperature', unit: '°f'},
+    {name: 'feelslike_f', label: 'Feels like', unit: '°f'},
+    {name: 'gust_mph', label: 'Wind', unit: ' mph'},
+    {name: 'humidity', label: 'Feels like', unit: '%'}
+]
+
 async function callAPI() {
     const weatherResponse = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=2e21eea24f714bb4a65154936231909&q=${locationInput.value}&days=${days.value}&aqi=no&alerts=no)`, {mode: 'cors'})
     const weatherData = await weatherResponse.json()
-    console.log(weatherData.forecast.forecastday[0])
     console.log(weatherData)
+    forecast.innerHTML = ''
+    createCurrentElement(weatherData)
     createForecastElements(weatherData)
 }
 
@@ -99,4 +107,31 @@ function createForecastElements(dataset) {
         })
         forecast.appendChild(element)
     }
+}
+
+function createCurrentElement(dataset) {
+    const element = document.createElement('div')
+    element.classList.add('current-day')
+    const header = document.createElement('div')
+    header.classList.add('forecast-day-header')
+    header.textContent = `Right now in ${dataset.location.name}, ${dataset.location.region}`
+    element.appendChild(header)
+    const subHeader = document.createElement('div')
+    subHeader.classList.add('forecast-day-subheader')
+    subHeader.textContent = `${dataset.current.condition.text}`
+    element.appendChild(subHeader)
+    currentData.forEach(item => {
+        const databit = document.createElement('div')
+        databit.classList.add('databit')
+        const databitHeader = document.createElement('div')
+        databitHeader.classList.add('databit-header')
+        databitHeader.textContent = `${item.label}`
+        databit.appendChild(databitHeader)
+        const databitContent = document.createElement('div')
+        databitContent.classList.add('databit-content')
+        databitContent.textContent = `${dataset.current[item.name]}${item.unit}`
+        databit.appendChild(databitContent)
+        element.appendChild(databit)
+    })
+    forecast.appendChild(element)
 }
