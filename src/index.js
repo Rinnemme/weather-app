@@ -21,7 +21,7 @@ async function callAPI() {
     const weatherData = await weatherResponse.json()
     console.log(weatherData.forecast.forecastday[0])
     console.log(weatherData)
-    createElements(weatherData)
+    createForecastElements(weatherData)
 }
 
 function submitForm(event) {
@@ -31,14 +31,59 @@ function submitForm(event) {
 
 form.onsubmit = submitForm
 
-function createElements(dataset) {
+function createForecastElements(dataset) {
     for(let i=0; i<days.value; i++) {
         const element = document.createElement('div')
         element.classList.add('forecast-day')
         const header = document.createElement('div')
         header.classList.add('forecast-day-header')
-        header.textContent = `${dataset.forecast.forecastday[i].date}`
+        let month = dataset.forecast.forecastday[i].date.slice(5,7)
+        switch (month) {
+            case '01':
+                month = 'January';
+                break;
+            case '02':
+                month = 'February';
+                break;
+            case '03':
+                month = 'March';
+                break;
+            case '04':
+                month = 'April';
+                break;
+            case '05':
+                month = 'May';
+                break;
+            case '06':
+                month = 'June';
+                break;
+            case '07':
+                month = 'July';
+                break;
+            case '08':
+                month = 'August';
+                break;
+            case '09':
+                month = 'September';
+                break;
+            case '10':
+                month = 'October';
+                break;
+            case '11':
+                month = 'November';
+                break;
+            case '12':
+                month = 'December';
+                break;
+        }
+        header.textContent += `${month} `
+        header.textContent += `${dataset.forecast.forecastday[i].date.slice(8,10)}`
+        header.textContent = i === 0 ? 'Today' : header.textContent
         element.appendChild(header)
+        const subHeader = document.createElement('div')
+        subHeader.classList.add('forecast-day-subheader')
+        subHeader.textContent = `${dataset.forecast.forecastday[i].day.condition.text}`
+        element.appendChild(subHeader)
         dailyData.forEach(item => {
             const databit = document.createElement('div')
             databit.classList.add('databit')

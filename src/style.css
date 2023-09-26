@@ -81,7 +81,7 @@ form>button {
     border-radius:5px;
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    grid-template-rows: 2em;
+    grid-template-rows: 1.5em 2em;
     grid-auto-rows: 100px;
     gap:10px;
     background-color:rgb(227, 247, 253);
@@ -112,11 +112,18 @@ form>button {
 .forecast-day-header {
     grid-column: 1 / -1;
     text-align:center;
-    border: 1px solid yellow;
     font-size:1.2em;
     height:100%;
-    display:grid;
     align-items:center;
     justify-content:center;
     font-family: 'Montserrat-bold';
+}
+
+.forecast-day-subheader {
+    grid-column: 1 / -1;
+    text-align:center;
+    font-size:1em;
+    height:100%;
+    align-items:flex-end;
+    justify-content:center;
 }
