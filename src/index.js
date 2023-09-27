@@ -42,7 +42,7 @@ async function callAPI() {
     createCurrentElement(weatherData)
     createForecastElements(weatherData)
     } catch (error) {
-        locationInput.value = 'nope'
+        locationInput.value = '99'
         getWeather.click()
         locationInput.style.border = '1px solid red'
         locationInput.setCustomValidity('Please enter a valid postal code')
