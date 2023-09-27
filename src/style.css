@@ -66,6 +66,11 @@ select {
     border-radius:3px;
 }
 
+input:focus,
+select:focus {
+    outline:none;
+}
+
 form>button {
     width:50%;
     border:none;

@@ -1,6 +1,7 @@
 import './style.css'
 
 const locationInput = document.getElementById('location')
+const getWeather = document.getElementById('get-weather')
 const days = document.getElementById('days')
 const form = document.getElementById('form')
 const forecast = document.getElementById('weather-forecast')
@@ -23,13 +24,32 @@ const currentData = [
     {name: 'humidity', label: 'Humidity', unit: '%'}
 ]
 
+locationInput.addEventListener("input", (event) => {
+    if (locationInput.validity.patternMismatch) {
+        locationInput.style.border = '1px solid red'
+        locationInput.setCustomValidity('Please enter a valid postal code')
+    } else {
+        locationInput.setCustomValidity('')
+        locationInput.style.border = '1px solid gray'
+    }
+})
+
 async function callAPI() {
+    try {
     const weatherResponse = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=2e21eea24f714bb4a65154936231909&q=${locationInput.value}&days=${days.value}&aqi=no&alerts=no)`, {mode: 'cors'})
     const weatherData = await weatherResponse.json()
-    console.log(weatherData)
     forecast.innerHTML = ''
     createCurrentElement(weatherData)
     createForecastElements(weatherData)
+    } catch (error) {
+        if (locationInput.value !== '') {
+            locationInput.value = 'nope'
+            getWeather.click()
+            locationInput.style.border = '1px solid red'
+            locationInput.setCustomValidity('Please enter a valid postal code')
+            locationInput.value = ''
+        }
+    }
 }
 
 function submitForm(event) {
