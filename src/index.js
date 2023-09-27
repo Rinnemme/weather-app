@@ -13,14 +13,14 @@ const dailyData = [
     {name: 'avgvis_miles', label: 'Visibility', unit: ' mi'},
     {name: 'daily_chance_of_rain', label: 'Rain chance', unit: '%'},
     {name: 'daily_chance_of_snow', label: 'Snow chance', unit: '%'},
-    {name: 'totalprecip_in', label: 'Precipitation', unit: ' in'}
+    {name: 'totalprecip_in', label: 'Total precip.', unit: ' in'}
 ]
 
 const currentData = [
-    {name: 'temp_f', label: 'Temperature', unit: '°f'},
+    {name: 'temp_f', label: 'Currently', unit: '°f'},
     {name: 'feelslike_f', label: 'Feels like', unit: '°f'},
     {name: 'gust_mph', label: 'Wind', unit: ' mph'},
-    {name: 'humidity', label: 'Feels like', unit: '%'}
+    {name: 'humidity', label: 'Humidity', unit: '%'}
 ]
 
 async function callAPI() {
@@ -101,7 +101,7 @@ function createForecastElements(dataset) {
             databit.appendChild(databitHeader)
             const databitContent = document.createElement('div')
             databitContent.classList.add('databit-content')
-            databitContent.textContent = `${dataset.forecast.forecastday[i].day[item.name]}${item.unit}`
+            databitContent.textContent = `${Math.round(dataset.forecast.forecastday[i].day[item.name])}${item.unit}`
             databit.appendChild(databitContent)
             element.appendChild(databit)
         })
@@ -129,7 +129,7 @@ function createCurrentElement(dataset) {
         databit.appendChild(databitHeader)
         const databitContent = document.createElement('div')
         databitContent.classList.add('databit-content')
-        databitContent.textContent = `${dataset.current[item.name]}${item.unit}`
+        databitContent.textContent = `${Math.round(dataset.current[item.name])}${item.unit}`
         databit.appendChild(databitContent)
         element.appendChild(databit)
     })
