@@ -16,6 +16,51 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
 
+  
+* {
+    font-family: 'Montserrat';
+    box-sizing:border-box;
+}
+
+body {
+    align-items:center;
+    color: rgb(40,40,40);
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    justify-content:center;
+    margin:0;
+    min-height:100vh;
+    overflow: scroll;
+}
+
+#content {
+    align-items:center;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size:2.5em;
+    margin-top: 50px;
+}
+
+form {
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.label-input-pair {
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    justify-content:center;
+    width:100px;
+}
+    
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -26,41 +71,6 @@ input[type=number]{
     -moz-appearance: textfield;
 }
 
-* {
-    font-family: 'Montserrat';
-    box-sizing:border-box;
-}
-
-body {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    margin:0;
-    min-height:100vh;
-    overflow: scroll;
-    gap:20px;
-    color: rgb(40,40,40);
-}
-
-#content {
-    align-items:center;
-    display: flex;
-    flex-direction: column;
-}
-
-h1 {
-    margin-top: 50px;
-    font-size:2.5em;
-}
-
-form {
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-    align-items:center;
-}
-
 form>.inputs {
     display:flex;
     flex-direction:row;
@@ -69,11 +79,11 @@ form>.inputs {
 
 input,
 select {
-    width:80%;
-    text-align:center;
-    height:25px;
     border:1px solid gray;
     border-radius:3px;
+    height:25px;
+    text-align:center;
+    width:80%;
 }
 
 input:focus,
@@ -82,44 +92,38 @@ select:focus {
 }
 
 form>button {
-    width:50%;
+    background-color:rgb(40, 40, 40);
     border:none;
     border-radius:5px;
-    padding:8px 10px 8px 10px;
     color:white;
-    background-color:rgb(40, 40, 40);
     margin-top:10px;
+    padding:8px 10px 8px 10px;
+    width:50%;
 }
 
-.label-input-pair {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    width:100px;
-    gap:10px;
+form>button:hover {
+    cursor:pointer;
 }
 
 #weather-forecast {
+    align-items:center;
     display:flex;
     flex-direction:column;
-    align-items:center;
-    justify-content:center;
     gap:15px;
-    width:min(100vw, 500px);
     height:fit-content;
-    margin-top:20px;
+    justify-content:center;
     margin-bottom:50px;
+    margin-top:20px;
+    width:min(100vw, 500px);
 }
 
 #weather-forecast>.forecast-day,
 #weather-forecast>.current-day {
-    width:100%;
-    /* border-radius:5px; */
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
     gap:10px;
+    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
     padding:20px;
+    width:100%;
 }
 
 #weather-forecast>.forecast-day {
@@ -131,15 +135,15 @@ form>button {
 }
 
 .databit {
-    border-radius:3px;
+    align-items:center;
     background-color:rgb(202, 235, 245);
-    width:100%;
-    height:100px;
+    border-radius:3px;
     display:flex;
     flex-direction:column;
-    align-items:center;
+    height:100px;
     justify-content:center;
     padding:8px;
+    width:100%;
 }
 
 .forecast-day>.databit {
@@ -151,41 +155,41 @@ form>button {
 }
 
 .databit-header {
-    font-size:0.8em;
-    color:gray;
-    text-align:center;
-    margin-bottom:5px;
-    display:flex;
     align-items:flex-end;
-    justify-content:center;
+    color:gray;
+    display:flex;
     flex:1;
+    font-size:0.8em;
+    justify-content:center;
+    margin-bottom:5px;
+    text-align:center;
 }
 
 .databit-content {
-    font-size:1.1em;
-    text-align:center;
-    display:flex;
     align-items:flex-start;
-    justify-content:center;
+    display:flex;
     flex:1;
+    font-size:1.1em;
+    justify-content:center;
+    text-align:center;
 }
 
 .forecast-day-header {
-    grid-column: 1 / -1;
-    text-align:center;
-    font-size:1.2em;
-    height:100%;
     align-items:center;
-    justify-content:center;
     font-family: 'Montserrat-bold';
+    font-size:1.2em;
+    grid-column: 1 / -1;
+    height:100%;
+    justify-content:center;
+    text-align:center;
 }
 
 .forecast-day-subheader {
-    grid-column: 1 / -1;
-    text-align:center;
-    font-size:1em;
-    margin-bottom:10px;
-    height:100%;
     align-items:flex-end;
+    font-size:1em;
+    grid-column: 1 / -1;
+    height:100%;
     justify-content:center;
+    margin-bottom:10px;
+    text-align:center;
 }
